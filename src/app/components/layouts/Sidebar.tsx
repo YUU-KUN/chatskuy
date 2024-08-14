@@ -4,6 +4,7 @@ import {
   ChatSlash,
   OpenAiLogo,
   PlusSquare,
+  Trash,
 } from "@phosphor-icons/react";
 import axios from "axios";
 import Link from "next/link";
@@ -28,6 +29,18 @@ export const Sidebar = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+      console.log(error);
+    }
+  };
+
+  const removeConversation = async (id: string) => {
+    try {
+      const response = await axios.delete(
+        `http://127.0.0.1:8000/api/sessions/${id}`
+      );
+      conversations.filter((conversation) => conversation.id !== id);
+      router.push("/c/new");
+    } catch (error) {
       console.log(error);
     }
   };
@@ -67,7 +80,7 @@ export const Sidebar = () => {
         className="fixed laptop:relative top-0 left-0 z-20 flex flex-col items-start justify-between bg-white rounded-2xl h-full w-3/4 laptop:w-1/4 p-5 transition-transform transform -translate-x-full laptop:translate-x-0 duration-300 ease-in-out"
       >
         <div className="w-full">
-          <div className="flex justify-center items-center mb-5">
+          <div onClick={() => router.push("/")} className="flex justify-center items-center mb-5 cursor-pointer">
             <OpenAiLogo size={32} weight="fill" className="mr-2" />
             <p className="font-bold text-2xl mb-0">ChatSkuy.</p>
           </div>
@@ -85,13 +98,18 @@ export const Sidebar = () => {
               {conversations.map(({ id, title }) => (
                 <Link
                   key={id}
-                  className={`flex justify-start items-center rounded-lg p-4 laptop:p-2 hover:bg-grey w-full ${
+                  className={`flex justify-between items-center rounded-lg p-4 laptop:p-2 hover:bg-grey w-full ${
                     pathname === `/c/${id}` ? "bg-grey" : ""
                   }`}
                   onClick={() => handleSelectConversation(id)}
                   href={`/c/${id}`}
                 >
-                  <p className="text-14 line-clamp-2">{title}</p>
+                  <p className="text-14 line-clamp-2 w-full">{title}</p>
+                  <Trash
+                    onClick={() => removeConversation(id)}
+                    size={20}
+                    className="text-red"
+                  />
                 </Link>
               ))}
             </div>
