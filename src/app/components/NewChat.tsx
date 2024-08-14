@@ -160,9 +160,7 @@ export const NewChat = ({ conversation_id }: Props) => {
             </div>
           ))}
           {isLoading && (
-            <div
-              className="flex flex-col justify-end gap-4 w-full"
-            >
+            <div className="flex flex-col justify-end gap-4 w-full">
               <div className="flex self-end bg-red text-white rounded-xl rounded-br-none p-2 w-fit">
                 {chat}
               </div>
@@ -183,6 +181,11 @@ export const NewChat = ({ conversation_id }: Props) => {
           placeholder="Message"
           className="w-full bg-transparent outline-none"
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              sendMessage(message);
+            }
+          }}
           value={message}
         />
         <button
