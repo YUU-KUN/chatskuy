@@ -7,8 +7,10 @@ Chatskuy is a generative AI website that offers smart and engaging conversations
 
 Chatskuy Features:
 - Landing Page: A welcoming and informative landing page that introduces you to Chatskuy's capabilities and helps you get started quickly.
-- Question Recommendation: Get personalized question suggestions to guide your conversations and explore new topics effortlessly.
+- Question Recommendations: Get personalized question suggestions to guide your conversations and explore new topics effortlessly.
 - Chat History: Easily access your previous conversations, allowing you to continue where you left off or revisit important discussions.
+- Gemini AI Integration: Enhanced conversational capabilities through Gemini AI integration for a more advanced and insightful experience.
+- Responsive Design: Optimized for a seamless experience across various devices and screen sizes.
 
 Code Reference:
 None - I created it all by myself.
